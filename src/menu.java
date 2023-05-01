@@ -7,7 +7,7 @@ public class menu {
         System.out.println("--------------------------------------");
     }
 
-    public void seleccion(int opcion) throws IOException, ClassNotFoundException {
+    public void seleccion(int opcion) throws Exception {
         seleccion seleccion = new seleccion();
         switch (opcion) {
             case 1:
