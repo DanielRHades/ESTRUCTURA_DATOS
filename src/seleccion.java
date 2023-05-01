@@ -10,15 +10,14 @@ public class seleccion {
         String[] files = dir.list();
 
         for (int i = 0; i < files.length; i++) {
-            if(files[i].endsWith("csv")){
+            if(files[i].endsWith("txt")){
                 lista.addLast(importarProductos(dir+"/"+files[i], i));
             }
         }
         return lista;
     }
-    public producto importarProductos(String nombre, int ID) throws IOException, ClassNotFoundException {;
-        FileInputStream fin = new FileInputStream(nombre);
-        ObjectInputStream ois = new ObjectInputStream(fin);
+    public producto importarProductos(String nombre, int ID) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombre));
         producto nuevoProducto = (producto) ois.readObject();
         nuevoProducto.setID(ID);
         ois.close();
@@ -45,10 +44,9 @@ public class seleccion {
         producto.setPrecio(Double.parseDouble(sc.nextLine()));
         System.out.println("Ingrese la cantidad del producto");
         producto.setCantidad(Integer.parseInt(sc.nextLine()));
-        String fileName= "productos/"+producto.getNombre()+".csv";
-        FileOutputStream fos = new FileOutputStream(fileName);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(producto.getNombre());
+        String fileName= "productos/"+producto.getNombre()+".txt";
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
+        oos.writeObject(producto);
         oos.close();
         return producto;
     }

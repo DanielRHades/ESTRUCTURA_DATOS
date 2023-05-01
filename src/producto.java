@@ -1,4 +1,6 @@
-public class producto {
+import java.io.Serializable;
+
+public class producto implements Serializable {
     String nombre,tipo,rutaImagen;
     double precio;
     int cantidad,ID;
