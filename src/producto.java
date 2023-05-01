@@ -1,9 +1,19 @@
-import java.io.Serializable;
-
-public class producto implements Serializable {
+public class producto {
     String nombre,tipo,rutaImagen;
     double precio;
     int cantidad,ID;
+
+    public producto(){
+        super();
+    }
+
+    public producto(String nombre, String tipo, String rutaImagen, double precio, int cantidad){
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.rutaImagen = rutaImagen;
+        this.precio = precio;
+        this.cantidad = cantidad;
+    }
 
     public String getNombre() {
         return nombre;

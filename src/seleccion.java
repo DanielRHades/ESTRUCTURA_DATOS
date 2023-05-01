@@ -1,29 +1,31 @@
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
 public class seleccion {
 
-    public LinkedList listar() throws IOException, ClassNotFoundException {
+    public LinkedList listar() throws Exception {
         LinkedList<producto> lista = new LinkedList<>();
         File dir = new File("productos/");
         String[] files = dir.list();
 
         for (int i = 0; i < files.length; i++) {
-            if(files[i].endsWith("txt")){
+            if(files[i].endsWith("xml")){
                 lista.addLast(importarProductos(dir+"/"+files[i], i));
             }
         }
         return lista;
     }
-    public producto importarProductos(String nombre, int ID) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nombre));
-        producto nuevoProducto = (producto) ois.readObject();
+    public producto importarProductos(String nombre, int ID) throws Exception {
+        Serializer serializer = new Persister();
+        File source = new File(nombre);
+        producto nuevoProducto = serializer.read(producto.class, source);
         nuevoProducto.setID(ID);
-        ois.close();
         return nuevoProducto;
     }
-    public void listarProductos() throws IOException, ClassNotFoundException {
+    public void listarProductos() throws Exception {
         LinkedList<producto> lista = listar();
         for (int i = 0; i < lista.size(); i++) {
             producto producto = lista.get(i);
@@ -31,23 +33,22 @@ public class seleccion {
         }
     }
 
-    public producto añadirProducto() throws IOException {
+    public producto añadirProducto() throws Exception {
         Scanner sc = new Scanner(System.in);
-        producto producto=new producto();
         System.out.println("Ingrese el nombre del producto");
-        producto.setNombre(sc.nextLine());
+        String nombre = (sc.nextLine());
         System.out.println("Ingrese el tipo del producto");
-        producto.setTipo(sc.nextLine());
+        String tipo =(sc.nextLine());
         System.out.println("Ingrese la ruta de la imagen del producto");
-        producto.setRutaImagen(sc.nextLine());
+        String rutaImagen = (sc.nextLine());
         System.out.println("Ingrese el precio del producto");
-        producto.setPrecio(Double.parseDouble(sc.nextLine()));
+        double precio = (Double.parseDouble(sc.nextLine()));
         System.out.println("Ingrese la cantidad del producto");
-        producto.setCantidad(Integer.parseInt(sc.nextLine()));
-        String fileName= "productos/"+producto.getNombre()+".txt";
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
-        oos.writeObject(producto);
-        oos.close();
+        int cantidad = (Integer.parseInt(sc.nextLine()));
+        producto producto=new producto(nombre,tipo,rutaImagen,precio,cantidad);
+        Serializer serializer = new Persister();
+        File file = new File("productos/producto"+producto.getNombre()+".xml");
+        serializer.write(producto, file);
         return producto;
     }
 
