@@ -47,6 +47,8 @@ public class seleccion {
         int cantidad = (Integer.parseInt(sc.nextLine()));
         producto producto=new producto(nombre,tipo,rutaImagen,precio,cantidad);
         Serializer serializer = new Persister();
+        File dir = new File("productos/");
+        producto.setID(dir.list().length);
         File file = new File("productos/producto"+producto.getNombre()+".xml");
         serializer.write(producto, file);
         return producto;
