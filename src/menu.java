@@ -7,7 +7,7 @@ public class menu {
         System.out.println("1. Añadir producto\n2. Eliminar producto\n3. Listar productos\n4. Salir");
         System.out.println("-------------------------------");
     }
-    public void seleccion(int opcion, int nums) throws Exception {
+    public void seleccion(int opcion) throws Exception {
         seleccion seleccion = new seleccion();
         switch (opcion) {
             case 1:
