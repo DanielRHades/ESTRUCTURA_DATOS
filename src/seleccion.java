@@ -50,19 +50,18 @@ public class seleccion {
         Serializer serializer = new Persister();
         File dir = new File("productos/"); // ruta en la que se van a guardar los archivos
         producto.setID(dir.list().length-1);
-        File file = new File("productos/producto"+producto.getNombre()+".xml");
+        File file = new File("productos/"+producto.getNombre()+".xml");
         serializer.write(producto, file);
     }
-    public void eliminarProducto() {
+    public void eliminarProducto() throws Exception {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Dime el nombre del producto que deseas borrar: ");
-        String ep = (sc.nextLine());
-        File dir = new File("productos/");
-        String[] files = dir.list();
-        for (int i = 0; i < files.length; i++) {
-            if (files[i].contains(ep)) {
-                File cositas = new File("productos/"+files[i]);
-                cositas.delete();
+        System.out.println("Ingresa el número del producto a eliminar");
+        int id = Integer.parseInt(sc.nextLine());
+        LinkedList<producto> lista = listar();
+        for (producto producto : lista) {
+            if (id == producto.getID()) {
+                File dir = new File("productos/"+producto.getNombre()+".xml");
+                dir.delete();
             }
         }
     }
