@@ -53,4 +53,17 @@ public class seleccion {
         File file = new File("productos/producto"+producto.getNombre()+".xml");
         serializer.write(producto, file);
     }
+    public void eliminarProducto() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Dime el nombre del producto que deseas borrar: ");
+        String ep = (sc.nextLine());
+        File dir = new File("productos/");
+        String[] files = dir.list();
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].contains(ep)) {
+                File cositas = new File("productos/"+files[i]);
+                cositas.delete();
+            }
+        }
+    }
 }
