@@ -14,7 +14,7 @@ public class menu {
                 seleccion.añadirProducto();
                 break;
             case 2:
-                //seleccion.eliminarProductos();
+                seleccion.eliminarProducto();
                 break;
             case 3:
                 seleccion.listarProductos();
