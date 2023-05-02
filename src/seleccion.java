@@ -66,8 +66,8 @@ public class seleccion {
             if (files[i].contains(ep)) {
                 File cositas = new File("productos/"+files[i]);
                 cositas.delete();
-              }
             }
         }
+    }
     }
 
