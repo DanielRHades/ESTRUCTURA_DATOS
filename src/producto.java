@@ -1,5 +1,7 @@
 public class producto {
-    String nombre,tipo,rutaImagen;
+    String nombre;
+    String tipo;
+    String rutaImagen;
     double precio;
     int cantidad,ID;
 

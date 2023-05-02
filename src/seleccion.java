@@ -1,10 +1,15 @@
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+
+import javax.swing.*;
 import java.io.*;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import static javax.swing.JOptionPane.*;
+
 public class seleccion {
     public LinkedList listar() throws Exception {
         LinkedList<producto> lista = new LinkedList<>();
@@ -31,21 +36,17 @@ public class seleccion {
             }
         });
         for (producto producto : lista) {
-            System.out.println(producto.getID() + ". " + producto.getNombre());
+            System.out.println(producto.getID() + ". " + producto.getNombre()+" "+producto.getTipo()+" "+producto.getPrecio()+" "+producto.getCantidad());
         }
     }
     public void añadirProducto() throws Exception {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del producto");
-        String nombre = (sc.nextLine());
-        System.out.println("Ingrese el tipo del producto");
-        String tipo =(sc.nextLine());
-        System.out.println("Ingrese la ruta de la imagen del producto");
-        String rutaImagen = (sc.nextLine());
-        System.out.println("Ingrese el precio del producto");
-        double precio = (Double.parseDouble(sc.nextLine()));
-        System.out.println("Ingrese la cantidad del producto");
-        int cantidad = (Integer.parseInt(sc.nextLine()));
+        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");
+        String tipo = JOptionPane.showInputDialog("Ingrese el tipo del producto: ");
+        String rutaImagen = JOptionPane.showInputDialog("Ingrese la ruta de la imagen del producto: ");
+        String precior = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
+        double precio = Double.parseDouble(precior);
+        String cantidadr= JOptionPane.showInputDialog("Ingrese la cantidad del producto: ");
+        int cantidad= Integer.parseInt(cantidadr);
         producto producto=new producto(nombre,tipo,rutaImagen,precio,cantidad);
         Serializer serializer = new Persister();
         File dir = new File("productos/"); // ruta en la que se van a guardar los archivos
