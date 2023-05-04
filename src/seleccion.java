@@ -27,7 +27,7 @@ public class seleccion {
         File source = new File(nombre);
         return serializer.read(producto.class, source);
     }
-    public void listarProductos() throws Exception {
+    public int listarProductosID() throws Exception {
         LinkedList<producto> lista = listar();
         Collections.sort(lista, new Comparator<producto>() {
             @Override
@@ -35,9 +35,67 @@ public class seleccion {
                 return i1.ID - i2.ID;
             }
         });
+        int ID = 0;
         for (producto producto : lista) {
-            System.out.println(producto.getID() + ". " + producto.getNombre()+" "+producto.getTipo()+" "+producto.getPrecio()+" "+producto.getCantidad());
+            ID = producto.getID();
         }
+        return ID;
+    }
+    public String listarProductosNombre() throws Exception {
+        LinkedList<producto> lista = listar();
+        Collections.sort(lista, new Comparator<producto>() {
+            @Override
+            public int compare(producto i1, producto i2) {
+                return i1.ID - i2.ID;
+            }
+        });
+        String nombre = null;
+        for (producto producto : lista) {
+            nombre = producto.getNombre();
+        }
+        return nombre;
+    }
+    public String listarProductosTipo() throws Exception {
+        LinkedList<producto> lista = listar();
+        Collections.sort(lista, new Comparator<producto>() {
+            @Override
+            public int compare(producto i1, producto i2) {
+                return i1.ID - i2.ID;
+            }
+        });
+        String tipo = null;
+        for (producto producto : lista) {
+            tipo = producto.getTipo();
+        }
+        return tipo;
+    }
+    public double listarProductosPrecio() throws Exception {
+        LinkedList<producto> lista = listar();
+        Collections.sort(lista, new Comparator<producto>() {
+            @Override
+            public int compare(producto i1, producto i2) {
+                return i1.ID - i2.ID;
+            }
+        });
+        double precio = 0;
+        for (producto producto : lista) {
+            precio = producto.getPrecio();
+        }
+        return precio;
+    }
+    public int listarProductosCantidad() throws Exception {
+        LinkedList<producto> lista = listar();
+        Collections.sort(lista, new Comparator<producto>() {
+            @Override
+            public int compare(producto i1, producto i2) {
+                return i1.ID - i2.ID;
+            }
+        });
+        int cantidad = 0;
+        for (producto producto : lista) {
+            cantidad = producto.getCantidad();
+        }
+        return cantidad;
     }
     public void añadirProducto() throws Exception {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");

@@ -30,26 +30,45 @@ public class Ventana extends JFrame {
         comboBox1.addItem("Eliminar un producto");
 
         Object [] row = new Object[5];
-        seleccion sumamaw = new seleccion();
+        seleccion seleccion = new seleccion();
         btAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 if (comboBox1.getSelectedItem() == "Añadir un producto"){
-                    row[0] = "UWU";
-                    row[1] = "UWU";
-                    row[2] = "UWU";
-                    row[3] = "UWU";
-                    row[4]="UWU";
+                    try {
+                        seleccion.añadirProducto();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[0] = seleccion.listarProductosID();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[1] = seleccion.listarProductosNombre();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[2] = seleccion.listarProductosTipo();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[3] = seleccion.listarProductosPrecio();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[4]= seleccion.listarProductosCantidad();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     model.addRow(row);
                 }
                 if (comboBox1.getSelectedItem() == "Eliminar un producto"){
-                    row[0] = "UNU";
-                    row[1] = "UNU";
-                    row[2] = "UNU";
-                    row[3] = "UNU";
-                    row[4]="UNU";
-                    model.addRow(row);
                 }
             }
         });
