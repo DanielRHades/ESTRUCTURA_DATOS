@@ -112,10 +112,7 @@ public class seleccion {
         File file = new File("productos/"+producto.getNombre()+".xml");
         serializer.write(producto, file);
     }
-    public void eliminarProducto() throws Exception {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Ingresa el número del producto a eliminar");
-        int id = Integer.parseInt(sc.nextLine());
+    public void eliminarProducto(int id) throws Exception {
         LinkedList<producto> lista = listar();
         for (producto producto : lista) {
             if (id == producto.getID()) {
@@ -123,5 +120,14 @@ public class seleccion {
                 dir.delete();
             }
         }
+    }
+    public int eliminarProductoID(int id) throws Exception {
+        LinkedList<producto> lista = listar();
+        for (producto producto : lista) {
+            if (id == producto.getID()) {
+                id = id;
+            }
+        }
+        return id;
     }
 }

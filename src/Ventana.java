@@ -69,6 +69,21 @@ public class Ventana extends JFrame {
                     model.addRow(row);
                 }
                 if (comboBox1.getSelectedItem() == "Eliminar un producto"){
+                    String idr = JOptionPane.showInputDialog("Dame el ID del producto a eliminar: ");
+                    int id = Integer.parseInt(idr);
+                    try {
+                        seleccion.eliminarProducto(id);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+
+                    }
+                    try {
+                        if (seleccion.eliminarProductoID(id)==id){
+                            model.removeRow(seleccion.eliminarProductoID(id));
+                        }
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });
