@@ -13,7 +13,7 @@ public class Ventana extends JFrame {
     private JPanel jpSegundo;
     private JComboBox comboBox1;
 
-    public Ventana() {
+    public Ventana() throws Exception {
         setTitle("U-SHOP");
         setSize(800,600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -31,6 +31,16 @@ public class Ventana extends JFrame {
 
         Object [] row = new Object[5];
         seleccion seleccion = new seleccion();
+        int i=0;
+        for (i=0 ; i<seleccion.listarLista() ; i++ ){
+            row[0] = seleccion.listarProductosID(i);
+            row[1] = seleccion.listarProductosNombre(i);
+            row[2] = seleccion.listarProductosTipo(i);
+            row[3] = seleccion.listarProductosPrecio(i);
+            row[4]= seleccion.listarProductosCantidad(i);
+            model.addRow(row);
+        }
+
         btAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,17 +85,42 @@ public class Ventana extends JFrame {
                         seleccion.eliminarProducto(id);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
-
+                    }
+                    int a = model.getRowCount();
+                    for (int i=0; i<a ; i++){
+                        model.removeRow(0);
                     }
                     try {
-                        if (seleccion.eliminarProductoID(id)==id){
-                            model.removeRow(seleccion.eliminarProductoID(id));
+                        int i;
+                        for (i = 0; i < seleccion.listarLista(); i++) {
+                            row[0] = seleccion.listarProductosID(i);
+                            row[1] = seleccion.listarProductosNombre(i);
+                            row[2] = seleccion.listarProductosTipo(i);
+                            row[3] = seleccion.listarProductosPrecio(i);
+                            row[4] = seleccion.listarProductosCantidad(i);
+                            model.addRow(row);
                         }
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
                 }
+                if (comboBox1.getSelectedItem()=="Modificar un producto"){
+                    String cambiar = JOptionPane.showInputDialog("Dime que deseas cambiar del producto: \n 1.Nombre \n 2.Tipo \n 3.Ruta de Imagen \n 4.Precio \n 5.Cantidad");
+                    switch (cambiar){
+                        case "1":
+                            break;
+                        case "2":
+                            break;
+                        case "3":
+                            break;
+                        case "4":
+                            break;
+                        case "5":
+                            break;
+                    }
+                }
             }
         });
+
     }
 }
