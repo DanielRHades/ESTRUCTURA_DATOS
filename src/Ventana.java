@@ -28,6 +28,7 @@ public class Ventana extends JFrame {
         tbPrincipal.setRowHeight(30);
         comboBox1.addItem("Añadir un producto");
         comboBox1.addItem("Eliminar un producto");
+        comboBox1.addItem("Modificar un producto");
 
         Object [] row = new Object[5];
         seleccion seleccion = new seleccion();
@@ -105,22 +106,63 @@ public class Ventana extends JFrame {
                     }
                 }
                 if (comboBox1.getSelectedItem()=="Modificar un producto"){
-                    String cambiar = JOptionPane.showInputDialog("Dime que deseas cambiar del producto: \n 1.Nombre \n 2.Tipo \n 3.Ruta de Imagen \n 4.Precio \n 5.Cantidad");
-                    switch (cambiar){
-                        case "1":
-                            break;
-                        case "2":
-                            break;
-                        case "3":
-                            break;
-                        case "4":
-                            break;
-                        case "5":
-                            break;
+                    String idr = JOptionPane.showInputDialog("Dame la ID del producto deseas cambiar: ");
+                    int id = Integer.parseInt(idr);
+                    try {
+                        seleccion.eliminarProducto(id);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        seleccion.añadirProducto();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[0] = seleccion.listarProductosID();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[1] = seleccion.listarProductosNombre();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[2] = seleccion.listarProductosTipo();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[3] = seleccion.listarProductosPrecio();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[4]= seleccion.listarProductosCantidad();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    model.addRow(row);
+                   }
+                    int a = model.getRowCount();
+                    for (int i=0; i<a ; i++){
+                        model.removeRow(0);
+                    }
+                    try {
+                        int i;
+                        for (i = 0; i < seleccion.listarLista(); i++) {
+                            row[0] = seleccion.listarProductosID(i);
+                            row[1] = seleccion.listarProductosNombre(i);
+                            row[2] = seleccion.listarProductosTipo(i);
+                            row[3] = seleccion.listarProductosPrecio(i);
+                            row[4] = seleccion.listarProductosCantidad(i);
+                            model.addRow(row);
+                        }
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
                     }
                 }
-            }
         });
-
     }
 }

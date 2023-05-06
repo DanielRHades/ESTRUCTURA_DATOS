@@ -34,7 +34,7 @@ public class seleccion {
         return files.length-1;
     }
 
-    public producto importarProductos(String nombre) throws Exception {//Al llamar este metodo el string nombre incluye la ruta del archivo relativa al directorio raiz del prollecto
+    public producto importarProductos(String nombre) throws Exception {//Al llamar este metodo el string nombre incluye la ruta del archivo relativa al directorio raiz del proyecto
         Serializer serializer = new Persister();
         File source = new File(nombre);
         return serializer.read(producto.class, source);
