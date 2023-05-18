@@ -198,8 +198,7 @@ public class seleccion {
         int cantidad= Integer.parseInt(cantidadr);
         producto producto=new producto(nombre,tipo,precio,cantidad);
         Serializer serializer = new Persister();
-        File dir = new File("productos/"); // ruta en la que se van a guardar los archivos
-        producto.setID(dir.list().length);
+        producto.setID(generarID());
         File file = new File("productos/"+producto.getNombre()+".xml");
         serializer.write(producto, file);
     }
@@ -210,6 +209,19 @@ public class seleccion {
                 File dir = new File("productos/"+producto.getNombre()+".xml");
                 dir.delete();
             }
+        }
+    }
+
+    public int generarID() throws Exception {
+        LinkedList<producto> lista = listar();
+        LinkedList<Integer> ID = new LinkedList<Integer>();
+        if (lista.isEmpty()) {
+            return 0;
+        }else {
+            for (producto producto : lista) {
+                ID.addLast(producto.getID());
+            }
+            return ID.getLast() + 1;
         }
     }
 }
