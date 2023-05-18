@@ -18,7 +18,7 @@ public class Ventana extends JFrame {
     private JComboBox comboBox1;
 
     public Ventana() throws Exception {
-        setTitle("U-SHOP");
+        setTitle("U-STOCK");
         setSize(800,600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
