@@ -213,7 +213,4 @@ public class seleccion {
             }
         }
     }
-    public void hola (){
-        System.out.println("HOla");
-    }
 }
