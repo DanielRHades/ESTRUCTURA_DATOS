@@ -1,8 +1,12 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Ventana extends JFrame {
     private JPanel mainPanel;
@@ -29,6 +33,14 @@ public class Ventana extends JFrame {
         comboBox1.addItem("Añadir un producto");
         comboBox1.addItem("Eliminar un producto");
         comboBox1.addItem("Modificar un producto");
+
+        BufferedImage icon = ImageIO.read(new File("UI/uSTOCK.png"));
+        lbTitulo.setIcon(new ImageIcon(icon));
+
+        DefaultTableCellRenderer render1 = new DefaultTableCellRenderer();
+        render1.setForeground(Color.red);
+
+        tbPrincipal.getColumnModel().getColumn(0).setCellRenderer(render1);
 
         Object [] row = new Object[5];
         seleccion seleccion = new seleccion();

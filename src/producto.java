@@ -9,10 +9,9 @@ public class producto {
         super();
     }
 
-    public producto(String nombre, String tipo, String rutaImagen, double precio, int cantidad){
+    public producto(String nombre, String tipo, double precio, int cantidad){
         this.nombre = nombre;
         this.tipo = tipo;
-        this.rutaImagen = rutaImagen;
         this.precio = precio;
         this.cantidad = cantidad;
     }
@@ -31,14 +30,6 @@ public class producto {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public String getRutaImagen() {
-        return rutaImagen;
-    }
-
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
     }
 
     public double getPrecio() {

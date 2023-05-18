@@ -192,12 +192,11 @@ public class seleccion {
     public void añadirProducto() throws Exception {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");
         String tipo = JOptionPane.showInputDialog("Ingrese el tipo del producto: ");
-        String rutaImagen = JOptionPane.showInputDialog("Ingrese la ruta de la imagen del producto: ");
         String precior = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
         double precio = Double.parseDouble(precior);
         String cantidadr= JOptionPane.showInputDialog("Ingrese la cantidad del producto: ");
         int cantidad= Integer.parseInt(cantidadr);
-        producto producto=new producto(nombre,tipo,rutaImagen,precio,cantidad);
+        producto producto=new producto(nombre,tipo,precio,cantidad);
         Serializer serializer = new Persister();
         File dir = new File("productos/"); // ruta en la que se van a guardar los archivos
         producto.setID(dir.list().length-1);
