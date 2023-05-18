@@ -31,7 +31,7 @@ public class seleccion {
                 lista.addLast(importarProductos(dir+"/"+files[i]));
             }
         }
-        return files.length-1;
+        return files.length;
     }
 
     public producto importarProductos(String nombre) throws Exception {//Al llamar este metodo el string nombre incluye la ruta del archivo relativa al directorio raiz del proyecto
@@ -199,7 +199,7 @@ public class seleccion {
         producto producto=new producto(nombre,tipo,precio,cantidad);
         Serializer serializer = new Persister();
         File dir = new File("productos/"); // ruta en la que se van a guardar los archivos
-        producto.setID(dir.list().length-1);
+        producto.setID(dir.list().length);
         File file = new File("productos/"+producto.getNombre()+".xml");
         serializer.write(producto, file);
     }
