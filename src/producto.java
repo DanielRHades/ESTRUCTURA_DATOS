@@ -1,9 +1,8 @@
 public class producto {
-    String nombre;
-    String tipo;
-    String rutaImagen;
-    double precio;
-    int cantidad,ID;
+    private String nombre;
+    private String tipo;
+    private double precio;
+    private int cantidad,ID;
 
     public producto(){
         super();
@@ -15,7 +14,6 @@ public class producto {
         this.precio = precio;
         this.cantidad = cantidad;
     }
-
     public producto (double precio, int cantidad){
         this.precio= precio;
         this.cantidad= cantidad;
