@@ -1,26 +1,33 @@
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-
 import javax.swing.*;
 import java.io.*;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.Scanner;
-
-import static javax.swing.JOptionPane.*;
-
 public class seleccion {
     public LinkedList listar() throws Exception {
         LinkedList<producto> lista = new LinkedList<>();
         File dir = new File("productos/");
         String[] files = dir.list();
         for (int i = 0; i < files.length; i++) {
-            if(files[i].endsWith("xml")){ //El array incluye directorios además de archivos, esto se asegura de que solo cuente los archivos .xml
+            if(files[i].endsWith("xml")){ //En caso de que el directorio contenga archivos distintos a los xml
                 lista.addLast(importarProductos(dir+"/"+files[i]));
             }
         }
         return lista;
+    }
+    public void checkDirectory(){
+        File dir = new File("./");
+        String[] files = dir.list();
+        assert files != null;
+        for (String d: files) {
+            if (d == "productos") {
+                System.out.println("Directorio productos encontrado");
+                return;
+            }
+        }
+        new File("productos").mkdir();
     }
     public int listarLista() throws Exception {
         LinkedList<producto> lista = new LinkedList<>();
@@ -46,7 +53,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         int ID = 0;
@@ -60,7 +67,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         int ID = 0;
@@ -75,7 +82,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         String nombre = null;
@@ -89,7 +96,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         String nombre = null;
@@ -104,7 +111,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         String tipo = null;
@@ -118,7 +125,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         String tipo = null;
@@ -135,7 +142,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         double precio = 0;
@@ -149,7 +156,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         double precio = 0;
@@ -164,7 +171,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         int cantidad = 0;
@@ -179,7 +186,7 @@ public class seleccion {
         Collections.sort(lista, new Comparator<producto>() {
             @Override
             public int compare(producto i1, producto i2) {
-                return i1.ID - i2.ID;
+                return i1.getID() - i2.getID();
             }
         });
         int cantidad = 0;
@@ -198,7 +205,6 @@ public class seleccion {
         int cantidad= Integer.parseInt(cantidadr);
         producto producto=new producto(nombre,tipo,precio,cantidad);
         Serializer serializer = new Persister();
-        File dir = new File("productos/"); // ruta en la que se van a guardar los archivos
         producto.setID(generarID());
         File file = new File("productos/"+producto.getNombre()+".xml");
         serializer.write(producto, file);
@@ -266,6 +272,12 @@ public class seleccion {
         if (lista.isEmpty()) {
             return 0;
         }else {
+            lista.sort(new Comparator<producto>() {
+                @Override
+                public int compare(producto i1, producto i2) {
+                    return i1.getID() - i2.getID();
+                }
+            });
             for (producto producto : lista) {
                 ID.addLast(producto.getID());
             }

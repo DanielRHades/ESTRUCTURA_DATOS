@@ -36,16 +36,12 @@ public class Ventana extends JFrame {
         comboBox1.addItem("Modificar producto completo");
         comboBox1.addItem("Modificar precio & cantidad producto");
 
-        BufferedImage icon = ImageIO.read(new File("UI/uSTOCK.png"));
+        BufferedImage icon = ImageIO.read(new File("UI/uStockResized.png"));
         lbTitulo.setIcon(new ImageIcon(icon));
 
         jpPrimero.setBorder(BorderFactory.createMatteBorder(2,0,2,0,Color.gray));
-
-
         tbPrincipal.setBorder(BorderFactory.createMatteBorder(1,0,0,0,Color.gray));
-
         scrollPrincipal.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.black));
-
 
         Object [] row = new Object[5];
         seleccion seleccion = new seleccion();
