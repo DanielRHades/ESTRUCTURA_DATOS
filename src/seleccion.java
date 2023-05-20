@@ -217,6 +217,40 @@ public class seleccion {
         serializer.write(producto, file);
     }
 
+    public String mantenerNombre(int id) throws Exception {
+        LinkedList<producto> lista = listar();
+        String nombre = null;
+        for (producto producto : lista) {
+            if (id == producto.getID()) {
+                nombre = producto.getNombre();
+            }
+        }
+        return nombre;
+    }
+    public String mantenerTipo(int id) throws Exception {
+        LinkedList<producto> lista = listar();
+        String tipo = null;
+        for (producto producto : lista) {
+            if (id == producto.getID()) {
+                tipo = producto.getTipo();
+            }
+        }
+        return tipo;
+    }
+    public void añadirProductoPrecioCantidad(int id, String nombre, String tipo) throws Exception {
+        String precior = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
+        double precio = Double.parseDouble(precior);
+        String cantidadr= JOptionPane.showInputDialog("Ingrese la cantidad del producto: ");
+        int cantidad= Integer.parseInt(cantidadr);
+        producto producto=new producto(precio,cantidad);
+        Serializer serializer = new Persister();
+        producto.setID(id);
+        producto.setNombre(nombre);
+        producto.setTipo(tipo);
+        File file = new File("productos/"+producto.getNombre()+".xml");
+        serializer.write(producto, file);
+    }
+
     public void eliminarProducto(int id) throws Exception {
         LinkedList<producto> lista = listar();
         for (producto producto : lista) {

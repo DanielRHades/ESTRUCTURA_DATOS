@@ -33,7 +33,8 @@ public class Ventana extends JFrame {
         tbPrincipal.setRowHeight(30);
         comboBox1.addItem("Añadir un producto");
         comboBox1.addItem("Eliminar un producto");
-        comboBox1.addItem("Modificar un producto");
+        comboBox1.addItem("Modificar un producto completo");
+        comboBox1.addItem("Modificar precio y cantidad producto");
 
         BufferedImage icon = ImageIO.read(new File("UI/uSTOCK.png"));
         lbTitulo.setIcon(new ImageIcon(icon));
@@ -121,7 +122,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                 }
-                if (comboBox1.getSelectedItem()=="Modificar un producto"){
+                if (comboBox1.getSelectedItem()=="Modificar un producto completo"){
                     String idr = JOptionPane.showInputDialog("Dame la ID del producto deseas cambiar: ");
                     int id = Integer.parseInt(idr);
                     try {
@@ -178,7 +179,78 @@ public class Ventana extends JFrame {
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
+                if (comboBox1.getSelectedItem()=="Modificar precio y cantidad producto"){
+                    String idr = JOptionPane.showInputDialog("Dame la ID del producto deseas cambiar: ");
+                    int id = Integer.parseInt(idr);
+
+                    String n = null;
+                    try {
+                        n = seleccion.mantenerNombre(id);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    String t = null;
+                    try {
+                        t = seleccion.mantenerTipo(id);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        seleccion.eliminarProducto(id);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        seleccion.añadirProductoPrecioCantidad(id,n,t);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[0] = seleccion.listarProductosID();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[1] = seleccion.listarProductosNombre();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[2] = seleccion.listarProductosTipo();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[3] = seleccion.listarProductosPrecio();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    try {
+                        row[4]= seleccion.listarProductosCantidad();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    model.addRow(row);
                 }
+                a = model.getRowCount();
+                for (int i=0; i<a ; i++){
+                    model.removeRow(0);
+                }
+                try {
+                    int i;
+                    for (i = 0; i < seleccion.listarLista(); i++) {
+                        row[0] = seleccion.listarProductosID(i);
+                        row[1] = seleccion.listarProductosNombre(i);
+                        row[2] = seleccion.listarProductosTipo(i);
+                        row[3] = seleccion.listarProductosPrecio(i);
+                        row[4] = seleccion.listarProductosCantidad(i);
+                        model.addRow(row);
+                    }
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
         });
     }
 }
