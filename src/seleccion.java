@@ -196,7 +196,7 @@ public class seleccion {
         }
         return cantidad;
     }
-    public void añadirProducto() throws Exception {
+    public void añadirProducto(int id) throws Exception {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");
         String tipo = JOptionPane.showInputDialog("Ingrese el tipo del producto: ");
         String precior = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
@@ -205,11 +205,11 @@ public class seleccion {
         int cantidad= Integer.parseInt(cantidadr);
         producto producto=new producto(nombre,tipo,precio,cantidad);
         Serializer serializer = new Persister();
-        producto.setID(generarID());
+        producto.setID(id);
         File file = new File("productos/"+producto.getNombre()+".xml");
         serializer.write(producto, file);
     }
-    public void añadirProducto2(int id) throws Exception {
+    public void modificarProducto(int id) throws Exception {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del producto: ");
         String tipo = JOptionPane.showInputDialog("Ingrese el tipo del producto: ");
         String precior = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
@@ -243,7 +243,7 @@ public class seleccion {
         }
         return tipo;
     }
-    public void añadirProductoPrecioCantidad(int id, String nombre, String tipo) throws Exception {
+    public void modificarProductoPrecioCantidad(int id, String nombre, String tipo) throws Exception {
         String precior = JOptionPane.showInputDialog("Ingrese el precio del producto: ");
         double precio = Double.parseDouble(precior);
         String cantidadr= JOptionPane.showInputDialog("Ingrese la cantidad del producto: ");
@@ -280,8 +280,9 @@ public class seleccion {
             });
             for (producto producto : lista) {
                 ID.addLast(producto.getID());
+
             }
-            return ID.getLast() + 1;
+            return ID.getLast()+1;
         }
     }
 }

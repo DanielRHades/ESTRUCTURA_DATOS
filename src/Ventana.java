@@ -60,8 +60,16 @@ public class Ventana extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if (comboBox1.getSelectedItem() == "Añadir producto"){
+
+                    int id = 0;
                     try {
-                        seleccion.añadirProducto();
+                        id = seleccion.generarID();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    try {
+                        seleccion.añadirProducto(id);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -127,7 +135,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     try {
-                        seleccion.añadirProducto2(id);
+                        seleccion.modificarProducto(id);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -198,7 +206,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     try {
-                        seleccion.añadirProductoPrecioCantidad(id,n,t);
+                        seleccion.modificarProductoPrecioCantidad(id,n,t);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
