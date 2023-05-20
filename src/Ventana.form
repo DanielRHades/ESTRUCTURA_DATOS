@@ -53,7 +53,7 @@
           </component>
         </children>
       </grid>
-      <scrollpane id="d9469">
+      <scrollpane id="d9469" binding="scrollPrincipal">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -68,9 +68,10 @@
             <constraints/>
             <properties>
               <autoCreateRowSorter value="false"/>
+              <background color="-2308"/>
               <font name="Arial" style="1"/>
               <foreground color="-16777216"/>
-              <gridColor color="-9739834"/>
+              <gridColor color="-16777216"/>
               <selectionBackground color="-1715658"/>
               <showHorizontalLines value="true"/>
               <showVerticalLines value="true"/>

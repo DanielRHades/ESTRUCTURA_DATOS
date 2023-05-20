@@ -16,6 +16,7 @@ public class Ventana extends JFrame {
     private JButton btAceptar;
     private JPanel jpSegundo;
     private JComboBox comboBox1;
+    private JScrollPane scrollPrincipal;
 
     public Ventana() throws Exception {
         setTitle("U-STOCK");
@@ -37,10 +38,13 @@ public class Ventana extends JFrame {
         BufferedImage icon = ImageIO.read(new File("UI/uSTOCK.png"));
         lbTitulo.setIcon(new ImageIcon(icon));
 
-        DefaultTableCellRenderer render1 = new DefaultTableCellRenderer();
-        render1.setForeground(Color.red);
+        jpPrimero.setBorder(BorderFactory.createMatteBorder(2,0,2,0,Color.gray));
 
-        tbPrincipal.getColumnModel().getColumn(0).setCellRenderer(render1);
+
+        tbPrincipal.setBorder(BorderFactory.createMatteBorder(1,0,0,0,Color.gray));
+
+        scrollPrincipal.setBorder(BorderFactory.createMatteBorder(0,0,1,0,Color.black));
+
 
         Object [] row = new Object[5];
         seleccion seleccion = new seleccion();
@@ -126,7 +130,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     try {
-                        seleccion.añadirProducto();
+                        seleccion.añadirProducto2(id);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
