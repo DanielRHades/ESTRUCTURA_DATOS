@@ -22,7 +22,7 @@ public class seleccion {
         String[] files = dir.list();
         assert files != null;
         for (String d: files) {
-            if (d == "productos") {
+            if (d.endsWith("productos")) {
                 System.out.println("Directorio productos encontrado");
                 return;
             }
