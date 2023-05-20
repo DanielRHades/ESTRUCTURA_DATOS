@@ -31,10 +31,10 @@ public class Ventana extends JFrame {
         model.setColumnIdentifiers(columns);
         tbPrincipal.setModel(model);
         tbPrincipal.setRowHeight(30);
-        comboBox1.addItem("Añadir un producto");
-        comboBox1.addItem("Eliminar un producto");
-        comboBox1.addItem("Modificar un producto completo");
-        comboBox1.addItem("Modificar precio y cantidad producto");
+        comboBox1.addItem("Añadir producto");
+        comboBox1.addItem("Eliminar producto");
+        comboBox1.addItem("Modificar producto completo");
+        comboBox1.addItem("Modificar precio & cantidad producto");
 
         BufferedImage icon = ImageIO.read(new File("UI/uSTOCK.png"));
         lbTitulo.setIcon(new ImageIcon(icon));
@@ -63,7 +63,7 @@ public class Ventana extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (comboBox1.getSelectedItem() == "Añadir un producto"){
+                if (comboBox1.getSelectedItem() == "Añadir producto"){
                     try {
                         seleccion.añadirProducto();
                     } catch (Exception ex) {
@@ -96,7 +96,7 @@ public class Ventana extends JFrame {
                     }
                     model.addRow(row);
                 }
-                if (comboBox1.getSelectedItem() == "Eliminar un producto"){
+                if (comboBox1.getSelectedItem() == "Eliminar producto"){
                     String idr = JOptionPane.showInputDialog("Dame el ID del producto a eliminar: ");
                     int id = Integer.parseInt(idr);
                     try {
@@ -122,7 +122,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                 }
-                if (comboBox1.getSelectedItem()=="Modificar un producto completo"){
+                if (comboBox1.getSelectedItem()=="Modificar producto completo"){
                     String idr = JOptionPane.showInputDialog("Dame la ID del producto deseas cambiar: ");
                     int id = Integer.parseInt(idr);
                     try {
@@ -179,7 +179,7 @@ public class Ventana extends JFrame {
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
-                if (comboBox1.getSelectedItem()=="Modificar precio y cantidad producto"){
+                if (comboBox1.getSelectedItem()=="Modificar precio & cantidad producto"){
                     String idr = JOptionPane.showInputDialog("Dame la ID del producto deseas cambiar: ");
                     int id = Integer.parseInt(idr);
 
