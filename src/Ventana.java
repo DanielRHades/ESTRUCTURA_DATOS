@@ -19,7 +19,8 @@ public class Ventana extends JFrame {
     private JScrollPane scrollPrincipal;
 
     public Ventana() throws Exception {
-        setTitle("U-STOCK");
+        setIconImage(ImageIO.read(new File("UI/CAJITA.png")));
+        setTitle("STOCK");
         setSize(800,600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -36,8 +37,9 @@ public class Ventana extends JFrame {
         comboBox1.addItem("Modificar producto completo");
         comboBox1.addItem("Modificar precio & cantidad producto");
 
-        BufferedImage icon = ImageIO.read(new File("UI/uStockResized.png"));
+        BufferedImage icon = ImageIO.read(new File("UI/cajitaewe.png"));
         lbTitulo.setIcon(new ImageIcon(icon));
+
 
         jpPrimero.setBorder(BorderFactory.createMatteBorder(2,0,2,0,Color.gray));
         tbPrincipal.setBorder(BorderFactory.createMatteBorder(1,0,0,0,Color.gray));
