@@ -19,7 +19,8 @@ public class Ventana extends JFrame {
     private JScrollPane scrollPrincipal;
 
     public Ventana() throws Exception {
-        setTitle("U-STOCK");
+        setIconImage(ImageIO.read(new File("UI/CAJITA.png")));
+        setTitle("STOCK");
         setSize(800,600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -36,8 +37,9 @@ public class Ventana extends JFrame {
         comboBox1.addItem("Modificar producto completo");
         comboBox1.addItem("Modificar precio & cantidad producto");
 
-        BufferedImage icon = ImageIO.read(new File("UI/uStockResized.png"));
+        BufferedImage icon = ImageIO.read(new File("UI/cajitaewe.png"));
         lbTitulo.setIcon(new ImageIcon(icon));
+
 
         jpPrimero.setBorder(BorderFactory.createMatteBorder(2,0,2,0,Color.gray));
         tbPrincipal.setBorder(BorderFactory.createMatteBorder(1,0,0,0,Color.gray));
@@ -60,8 +62,16 @@ public class Ventana extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if (comboBox1.getSelectedItem() == "Añadir producto"){
+
+                    int id = 0;
                     try {
-                        seleccion.añadirProducto();
+                        id = seleccion.generarID();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    try {
+                        seleccion.añadirProducto(id);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -127,7 +137,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     try {
-                        seleccion.añadirProducto2(id);
+                        seleccion.modificarProducto(id);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
@@ -198,7 +208,7 @@ public class Ventana extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     try {
-                        seleccion.añadirProductoPrecioCantidad(id,n,t);
+                        seleccion.modificarProductoPrecioCantidad(id,n,t);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
